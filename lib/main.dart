@@ -9,7 +9,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: DirectorioHorizontal()));
+    return const MaterialApp(home: Scaffold(body: DirectorioHorizontal()));
   }
 }
 
@@ -21,6 +21,9 @@ class DirectorioHorizontal extends StatefulWidget {
 }
 
 class _DirectorioHorizontalState extends State<DirectorioHorizontal> {
+  // Variable para controlar el estado del icono interactivo
+  bool cambiarIcono = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +34,7 @@ class _DirectorioHorizontalState extends State<DirectorioHorizontal> {
             height: 120,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [
+              children: const [
                 CircleAvatar(
                   backgroundImage: AssetImage("images/1.jpeg"),
                   radius: 60,
@@ -64,100 +67,122 @@ class _DirectorioHorizontalState extends State<DirectorioHorizontal> {
             ),
           ),
         ),
-        Divider(color: Colors.blue),
+        const Divider(color: Colors.blue),
         Expanded(
           child: ListView(
             children: [
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Isrrael Zurita"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Angel Novillo"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Cecilia Naula"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Isrrael Zurita"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Angel Novillo"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Cecilia Naula"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Isrrael Zurita"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Icon(Icons.person, color: Colors.blue),
                 title: Text("Ing. Angel Novillo"),
                 subtitle: Text("Desarrollo de Aplicaciones Web"),
                 trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                  Icons.sentiment_very_satisfied,
+                  color: Color.fromARGB(255, 219, 240, 162),
                 ),
               ),
-              Divider(),
+              const Divider(),
+
+              // 🛠️ ÚLTIMO ELEMENTO INTERACTIVO CORREGIDO:
               ListTile(
-                leading: Icon(Icons.person, color: Colors.blue),
-                title: Text("Ing. Cecilia Naula"),
-                subtitle: Text("Desarrollo de Aplicaciones Web"),
-                trailing: Icon(
-                  Icons.star,
-                  color: const Color.fromARGB(255, 162, 210, 240),
+                leading: const Icon(Icons.person, color: Colors.blue),
+                title: const Text("Ing. Cecilia Naula"),
+                subtitle: const Text("Desarrollo de Aplicaciones Web"),
+                trailing: IconButton(
+                  icon: Icon(
+                    // Si cambiarIcono es true muestra cara triste, si es false feliz
+                    cambiarIcono
+                        ? Icons.sentiment_dissatisfied
+                        : Icons.sentiment_very_satisfied,
+                    // Evalúa el color dinámicamente según el estado de la variable
+                    color: cambiarIcono
+                        ? Colors
+                              .red // Rojo si está triste
+                        : const Color.fromARGB(
+                            255,
+                            219,
+                            240,
+                            162,
+                          ), // Tu color si está feliz
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      cambiarIcono =
+                          !cambiarIcono; // Invierte el valor al presionar
+                    });
+                  },
                 ),
               ),
-              Divider(),
+              const Divider(),
             ],
           ),
         ),
